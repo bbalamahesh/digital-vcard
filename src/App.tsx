@@ -1,5 +1,5 @@
 import { BusinessCard } from "./components/BusinessCard";
-import { card } from "./data/card";
+import { card } from "@shared";
 
 export default function App() {
   return (

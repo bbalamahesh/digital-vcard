@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Bala Mahesh Card",
+    "slug": "digital-vcard",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2a5bd7"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bbalamahesh.digitalvcard"
+    },
+    "android": {
+      "package": "com.bbalamahesh.digitalvcard",
+      "adaptiveIcon": {
+        "backgroundColor": "#2a5bd7",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sharing",
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow $(PRODUCT_NAME) to add Bala Mahesh B to your contacts."
+        }
+      ]
+    ]
+  }
+}

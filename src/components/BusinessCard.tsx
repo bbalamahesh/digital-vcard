@@ -1,4 +1,4 @@
-import { fullName, type CardData } from "../data/card";
+import { fullName, type CardData } from "@shared";
 import { ActionBar } from "./ActionBar";
 import { ContactRow } from "./ContactRow";
 import { ContactQr } from "./ContactQr";

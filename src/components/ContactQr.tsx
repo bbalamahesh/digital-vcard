@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import type { CardData } from "../data/card";
-import { buildVCard } from "../lib/vcard";
+import type { CardData } from "@shared";
+import { buildVCard } from "@shared";
 
 export function ContactQr({ data }: { data: CardData }) {
   const vcard = useMemo(() => buildVCard(data), [data]);

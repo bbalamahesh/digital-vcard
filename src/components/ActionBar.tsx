@@ -1,4 +1,4 @@
-import { fullName, type CardData } from "../data/card";
+import { fullName, type CardData } from "@shared";
 import { downloadVCard } from "../lib/vcard";
 import { useCopy } from "../lib/useCopy";
 

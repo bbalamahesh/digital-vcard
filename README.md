@@ -1,6 +1,12 @@
 # Digital vCard
 
-A digital business card for Bala Mahesh B, built with Vite, React, TypeScript and Tailwind CSS v4.
+A digital business card for Bala Mahesh B.
+
+- **Website** (repo root): Vite, React, TypeScript, Tailwind CSS v4. Live at https://digital-vcard-omega.vercel.app
+- **Mobile app** (`mobile/`): Expo + React Native for Android and iOS. See [mobile/README.md](mobile/README.md)
+- **Shared** (`shared/`): card details and the vCard builder, used by both
+
+## Website
 
 - **Save contact**: downloads a `.vcf` file that phones import straight into Contacts
 - **Scan to save**: the QR code holds the full vCard, so scanning adds the contact without any internet
@@ -18,14 +24,16 @@ npm run preview   # serve the production build locally
 
 ## Edit your details
 
-Everything lives in `src/data/card.ts`. Change a value there and the page, QR code and `.vcf` file all update.
+Everything lives in `shared/card.ts`. Change a value there and the website, the mobile app, both QR codes and the `.vcf` file all update.
 
 ## Project layout
 
 ```
+shared/
+  card.ts                 card content and types
+  vcard.ts                vCard builder
 src/
-  data/card.ts            card content and types
-  lib/vcard.ts            vCard builder + download
+  lib/vcard.ts            .vcf download (web)
   lib/useCopy.ts          clipboard hook
   components/
     BusinessCard.tsx      card layout
