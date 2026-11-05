@@ -5,15 +5,15 @@ import { useCopy } from "../lib/useCopy";
 const btn =
   "flex-1 cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
-export function ActionBar({ data }: { data: CardData }) {
+export function ActionBar({ data, pageUrl }: { data: CardData; pageUrl?: string }) {
   const { copied, copy } = useCopy();
 
   const share = async () => {
-    // Share the public card URL, not whatever preview or local URL this page is on
-    const url = data.website ?? window.location.href;
+    // Share the card's public URL, not whatever preview or local URL this page is on
+    const url = pageUrl ?? window.location.href;
     const shareData = {
       title: fullName(data),
-      text: `${fullName(data)} · ${data.title}`,
+      text: [fullName(data), data.title].filter(Boolean).join(" · "),
       url,
     };
     if (navigator.share) {

@@ -20,11 +20,11 @@ const copy: Record<Mode, { title: string; body: string; label: string }> = {
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
-export function ContactQr({ data }: { data: CardData }) {
+export function ContactQr({ data, pageUrl }: { data: CardData; pageUrl?: string }) {
   const [mode, setMode] = useState<Mode>("contact");
   const dialog = useRef<HTMLDialogElement>(null);
   const vcard = useMemo(() => buildVCard(data), [data]);
-  const value = mode === "link" && data.website ? data.website : vcard;
+  const value = mode === "link" && pageUrl ? pageUrl : vcard;
   const text = copy[mode];
 
   // Close the full-screen view when the backdrop is clicked
@@ -59,7 +59,7 @@ export function ContactQr({ data }: { data: CardData }) {
       <div>
         <h2 className="mb-1 font-display text-lg font-medium">{text.title}</h2>
         <p className="text-[13.5px] text-muted">{text.body}</p>
-        {data.website && <ModeToggle mode={mode} onChange={setMode} />}
+        {pageUrl && <ModeToggle mode={mode} onChange={setMode} />}
       </div>
 
       <dialog

@@ -13,6 +13,18 @@ A digital business card for Bala Mahesh B.
 - **Share**: opens the phone's share sheet, or copies the link on desktop
 - Copy buttons on every contact row, light and dark mode, works at phone width
 - Link previews (Open Graph image) and an Add to Home Screen icon and manifest
+- **Make your own card** (`/create/`): anyone can fill in a form, watch a live preview, and get a link and QR code for their own card
+
+## Cards for anyone
+
+`/create/` is an editor with a live preview. It gives a link like `/card/#d=...` where the card's details are compressed into the part after `#`. That means:
+
+- no sign-up, database or server: it runs on the same static hosting
+- the details never reach the server, since browsers don't send the `#` part
+- a card can't be changed after sharing: editing makes a new link (the editor keeps a draft in the browser, and **Edit a copy of this card** reopens any card in the editor)
+- everything read from a link is cleaned: only `http(s)` links are kept, and lengths are capped
+
+Shared cards use a generic link preview, not yours.
 
 ## Run it
 
@@ -33,7 +45,14 @@ Everything lives in `shared/card.ts`. Change a value there and the website, the 
 shared/
   card.ts                 card content and types
   vcard.ts                vCard builder
+index.html                your card (/)
+card/index.html           cards other people make (/card/)
+create/index.html         the editor (/create/)
 src/
+  App.tsx                 your card page
+  pages/CreatePage.tsx    editor with live preview
+  pages/ViewPage.tsx      shows a card from its link
+  lib/cardLink.ts         packs a card into a link and reads it back safely
   lib/vcard.ts            .vcf download (web)
   lib/useCopy.ts          clipboard hook
   components/

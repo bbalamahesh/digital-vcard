@@ -5,9 +5,17 @@ export default function App() {
   return (
     <main className="min-h-dvh px-4 py-10 sm:py-16">
       <BusinessCard data={card} />
-      <p className="mx-auto mt-4 max-w-md text-center font-mono text-[11.5px] text-muted">
-        vCard 3.0 · works with iOS and Android cameras
-      </p>
+      <footer className="mx-auto mt-4 grid max-w-md justify-items-center gap-2 text-center">
+        <p className="font-mono text-[11.5px] text-muted">
+          vCard 3.0 · works with iOS and Android cameras
+        </p>
+        <a
+          href="/create/"
+          className="rounded text-sm font-medium text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          Make your own card →
+        </a>
+      </footer>
     </main>
   );
 }

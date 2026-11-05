@@ -12,12 +12,13 @@ export function buildVCard(c: CardData): string {
     `N:${escape(c.lastName)};${escape(c.firstName)};;;`,
     `FN:${escape(fullName(c))}`,
     c.organization && `ORG:${escape(c.organization)}`,
-    `TITLE:${escape(c.title)}`,
+    c.title && `TITLE:${escape(c.title)}`,
     c.phone && `TEL;TYPE=CELL:${c.phone.replace(/\s/g, "")}`,
     c.email && `EMAIL;TYPE=INTERNET:${c.email}`,
     c.website && `URL:${c.website}`,
     ...c.links.map((l) => `URL;TYPE=${escape(l.label)}:${l.url}`),
-    `ADR:;;;${escape(c.location.city)};;;${escape(c.location.country)}`,
+    (c.location.city || c.location.country) &&
+      `ADR:;;;${escape(c.location.city)};;;${escape(c.location.country)}`,
     "END:VCARD",
   ];
   // CRLF line endings per the vCard spec

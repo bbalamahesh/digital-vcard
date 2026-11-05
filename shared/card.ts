@@ -19,6 +19,8 @@ export interface CardData {
   links: CardLink[];
   skills: string[];
   available: boolean;
+  /** Word shown in the availability badge, e.g. "Developer" or "Designer" */
+  availableAs?: string;
 }
 
 export const card: CardData = {
@@ -51,3 +53,13 @@ export const card: CardData = {
 
 export const fullName = (c: CardData) =>
   [c.firstName, c.lastName].filter(Boolean).join(" ");
+
+/** First letter of up to two words of the name, e.g. "Bala Mahesh B" -> "BM" */
+export const initialsOf = (name: string) =>
+  name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]!.toUpperCase())
+    .join("");
