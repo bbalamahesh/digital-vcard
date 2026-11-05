@@ -2,3 +2,4 @@
 // Edit card.ts to change your details on both.
 export * from "./card";
 export * from "./vcard";
+export * from "./themes";

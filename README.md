@@ -14,6 +14,9 @@ A digital business card for Bala Mahesh B.
 - Copy buttons on every contact row, light and dark mode, works at phone width
 - Link previews (Open Graph image) and an Add to Home Screen icon and manifest
 - **Make your own card** (`/create/`): anyone can fill in a form, watch a live preview, and get a link and QR code for their own card
+- **Social links**: LinkedIn, Instagram, Facebook, X, GitHub, YouTube, WhatsApp, Telegram, TikTok, Threads, Snapchat, Pinterest, Reddit, Discord, Dribbble, Behance, Medium, or any other link. Type a handle and it becomes the right URL
+- **10 themes**: Classic (follows light/dark mode), Midnight, Forest, Sunset, Rose, Ocean, Lavender, Mono, Noir & Gold, Paper. All meet WCAG AA contrast
+- **Print**: real-size 85 × 55 mm cards, either one front and back, or a sheet of 8 (fronts on page 1, backs on page 2, for double-sided printing)
 
 ## Cards for anyone
 
@@ -45,6 +48,7 @@ Everything lives in `shared/card.ts`. Change a value there and the website, the 
 shared/
   card.ts                 card content and types
   vcard.ts                vCard builder
+  themes.ts               the 10 card themes
 index.html                your card (/)
 card/index.html           cards other people make (/card/)
 create/index.html         the editor (/create/)
@@ -53,6 +57,9 @@ src/
   pages/CreatePage.tsx    editor with live preview
   pages/ViewPage.tsx      shows a card from its link
   lib/cardLink.ts         packs a card into a link and reads it back safely
+  lib/social.ts           social platforms: icons and handle -> URL
+  lib/theme.ts            applies a theme to a card or the page
+  components/PrintCard.tsx  print dialog and the printed card faces
   lib/vcard.ts            .vcf download (web)
   lib/useCopy.ts          clipboard hook
   components/

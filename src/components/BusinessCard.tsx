@@ -1,8 +1,10 @@
 import { fullName, type CardData } from "@shared";
+import { themeVars } from "../lib/theme";
 import { ActionBar } from "./ActionBar";
 import { ContactRow } from "./ContactRow";
 import { ContactQr } from "./ContactQr";
 import { SkillList } from "./SkillList";
+import { SocialLinks } from "./SocialLinks";
 
 interface Props {
   data: CardData;
@@ -19,20 +21,20 @@ export function BusinessCard({ data, pageUrl = data.website }: Props) {
     },
     data.email && { label: "Email", value: data.email, href: `mailto:${data.email}` },
     data.website && { label: "Website", value: data.website, href: data.website, external: true },
-    ...data.links.map((l) => ({ label: l.label, value: l.url, href: l.url, external: true })),
   ].filter(Boolean) as { label: string; value: string; href: string; external?: boolean }[];
 
   const place = [data.location.city, data.location.country].filter(Boolean).join(", ");
 
   return (
     <article
-      className="mx-auto max-w-md overflow-hidden rounded-[20px] border border-line bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_rgb(20_30_60/0.08)]"
+      style={themeVars(data.theme)}
+      className="mx-auto max-w-md overflow-hidden rounded-[20px] border border-line bg-surface text-ink shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_rgb(20_30_60/0.08)]"
       aria-label={`Contact card for ${fullName(data)}`}
     >
-      <header className="grid gap-3.5 px-7 pt-7 pb-5">
+      <header className="grid gap-3.5 px-7 pt-7 pb-5 max-[380px]:px-5">
         <div
           aria-hidden="true"
-          className="grid size-14 place-items-center rounded-[14px] bg-accent font-display text-[22px] font-bold text-surface"
+          className="grid size-14 place-items-center rounded-[14px] bg-accent font-display text-[22px] font-bold text-on-accent"
         >
           {data.initials}
         </div>
@@ -52,11 +54,16 @@ export function BusinessCard({ data, pageUrl = data.website }: Props) {
 
       <ActionBar data={data} pageUrl={pageUrl} />
 
-      <ul className="border-t border-line">
-        {rows.map((r) => (
-          <ContactRow key={r.label} {...r} />
-        ))}
-      </ul>
+      <div className="border-t border-line">
+        {rows.length > 0 && (
+          <ul>
+            {rows.map((r) => (
+              <ContactRow key={r.label} {...r} />
+            ))}
+          </ul>
+        )}
+        <SocialLinks links={data.links} />
+      </div>
 
       <ContactQr data={data} pageUrl={pageUrl} />
     </article>

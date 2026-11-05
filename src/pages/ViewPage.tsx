@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { fullName } from "@shared";
 import { BusinessCard } from "../components/BusinessCard";
+import { PrintButton } from "../components/PrintCard";
 import { cardFromHash, editUrl } from "../lib/cardLink";
+import { usePageTheme } from "../lib/theme";
 
 const link =
   "rounded text-sm font-medium text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
@@ -15,6 +17,8 @@ export function ViewPage() {
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
+
+  usePageTheme(data?.theme);
 
   useEffect(() => {
     document.title = data ? `${fullName(data)} · Contact Card` : "Card not found";
@@ -47,6 +51,7 @@ export function ViewPage() {
         <a href={editUrl(data)} className={link}>
           Edit a copy of this card
         </a>
+        <PrintButton data={data} className={`cursor-pointer ${link}`} />
       </footer>
     </main>
   );

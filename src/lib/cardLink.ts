@@ -1,5 +1,5 @@
 import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from "lz-string";
-import { initialsOf, type CardData } from "@shared";
+import { initialsOf, themes, type CardData } from "@shared";
 
 // Cards people make on /create/ live entirely in the link: the details are
 // compressed into the URL hash (#d=...), so nothing is stored on a server and
@@ -22,9 +22,10 @@ interface Wire {
   k?: [string, string][]; // links: [label, url]
   s?: string[]; // skills
   a?: string; // availability badge word; absent = not shown
+  h?: string; // theme id; absent = classic
 }
 
-const MAX = { text: 80, url: 200, links: 6, skills: 12, skill: 30 };
+export const MAX = { text: 80, url: 200, links: 10, skills: 12, skill: 30 };
 
 const str = (v: unknown, max = MAX.text) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
@@ -61,6 +62,7 @@ export function encodeCard(c: CardData): string {
   if (c.links.length) w.k = c.links.map((l) => [l.label, l.url]);
   if (c.skills.length) w.s = c.skills;
   if (c.available) w.a = c.availableAs || "";
+  if (c.theme && c.theme !== "classic") w.h = c.theme;
   return compressToEncodedURIComponent(JSON.stringify(w));
 }
 
@@ -92,6 +94,7 @@ export function decodeCard(encoded: string): CardData | null {
     skills: Array.isArray(w.s) ? w.s.map((s) => str(s, MAX.skill)) : [],
     available: typeof w.a === "string",
     availableAs: str(w.a, 24) || undefined,
+    theme: themes.some((t) => t.id === w.h) ? w.h : undefined,
   });
 }
 

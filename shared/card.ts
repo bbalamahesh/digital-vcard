@@ -21,6 +21,8 @@ export interface CardData {
   available: boolean;
   /** Word shown in the availability badge, e.g. "Developer" or "Designer" */
   availableAs?: string;
+  /** Theme id from themes.ts; leave out for Classic */
+  theme?: string;
 }
 
 export const card: CardData = {

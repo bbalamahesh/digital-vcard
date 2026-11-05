@@ -32,7 +32,7 @@ export function ActionBar({ data, pageUrl }: { data: CardData; pageUrl?: string 
       <button
         type="button"
         onClick={() => downloadVCard(data)}
-        className={`${btn} bg-accent text-surface hover:opacity-90`}
+        className={`${btn} bg-accent text-on-accent hover:opacity-90`}
       >
         Save contact
       </button>

@@ -4,8 +4,11 @@
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
 
-  /* Semantic colors, swapped for dark mode below */
+/* Semantic colors. "inline" makes utilities read the variables where they're
+   used, so a theme set on one card (or the page) recolors everything inside it. */
+@theme inline {
   --color-page: var(--page);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
@@ -13,6 +16,7 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
 }
 
 :root {
@@ -23,6 +27,7 @@
   --line: #dde2ea;
   --accent: #2a5bd7;
   --accent-soft: #e6edfc;
+  --on-accent: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +39,7 @@
     --line: #2a3347;
     --accent: #7aa2ff;
     --accent-soft: #1f2b47;
+    --on-accent: #0f1420;
     color-scheme: dark;
   }
 }
@@ -50,5 +56,31 @@ body {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* Printing: only the print sheet is shown, at real size, with its colors */
+@page {
+  margin: 10mm;
+}
+
+@media screen {
+  .print-root {
+    display: none;
+  }
+}
+
+@media print {
+  body > #root {
+    display: none;
+  }
+  body {
+    background: #fff;
+    padding: 0;
+  }
+  .print-root,
+  .print-root * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
