@@ -29,6 +29,7 @@ export const card: CardData = {
   location: { city: "Tamil Nadu", country: "India" },
   phone: "+91 98844 00630",
   email: "mahesh2me@gmail.com",
+  website: "https://digital-vcard-omega.vercel.app",
   links: [
     { label: "GitHub", url: "https://github.com/bbalamahesh" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/mahesh2me" },
