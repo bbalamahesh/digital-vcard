@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Semantic colors, swapped for dark mode below */
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+}
+
+:root {
+  --page: #e9ecf1;
+  --surface: #ffffff;
+  --ink: #15203a;
+  --muted: #5b6478;
+  --line: #dde2ea;
+  --accent: #2a5bd7;
+  --accent-soft: #e6edfc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0f1420;
+    --surface: #171e2e;
+    --ink: #e8ecf5;
+    --muted: #98a2b8;
+    --line: #2a3347;
+    --accent: #7aa2ff;
+    --accent-soft: #1f2b47;
+    color-scheme: dark;
+  }
+}
+
+body {
+  @apply bg-page text-ink font-sans antialiased;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
