@@ -1,5 +1,6 @@
 import { BusinessCard } from "./components/BusinessCard";
 import { card } from "@shared";
+import { MakeOwnCta } from "./components/MakeOwnCta";
 import { PrintButton } from "./components/PrintCard";
 
 const link =
@@ -7,18 +8,14 @@ const link =
 
 export default function App() {
   return (
-    <main className="min-h-dvh px-4 py-10 sm:py-16">
+    <main className="min-h-dvh px-4 pt-5 pb-10 sm:pt-8 sm:pb-16">
+      <MakeOwnCta />
       <BusinessCard data={card} />
       <footer className="mx-auto mt-4 grid max-w-md justify-items-center gap-2 text-center">
         <p className="font-mono text-[11.5px] text-muted">
           vCard 3.0 · works with iOS and Android cameras
         </p>
-        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-          <a href="/create/" className={link}>
-            Make your own card →
-          </a>
-          <PrintButton data={card} className={`cursor-pointer ${link}`} />
-        </div>
+        <PrintButton data={card} className={`cursor-pointer ${link}`} />
       </footer>
     </main>
   );

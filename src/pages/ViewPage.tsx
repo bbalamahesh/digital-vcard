@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fullName } from "@shared";
 import { BusinessCard } from "../components/BusinessCard";
+import { MakeOwnCta } from "../components/MakeOwnCta";
 import { PrintButton } from "../components/PrintCard";
 import { cardFromHash, editUrl } from "../lib/cardLink";
 import { usePageTheme } from "../lib/theme";
@@ -42,12 +43,10 @@ export function ViewPage() {
   }
 
   return (
-    <main className="min-h-dvh px-4 py-10 sm:py-16">
+    <main className="min-h-dvh px-4 pt-5 pb-10 sm:pt-8 sm:pb-16">
+      <MakeOwnCta />
       <BusinessCard data={data} pageUrl={window.location.href} />
       <footer className="mx-auto mt-4 flex max-w-md flex-wrap justify-center gap-x-5 gap-y-2">
-        <a href="/create/" className={link}>
-          Make your own card
-        </a>
         <a href={editUrl(data)} className={link}>
           Edit a copy of this card
         </a>
