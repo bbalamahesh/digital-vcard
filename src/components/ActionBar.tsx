@@ -9,10 +9,12 @@ export function ActionBar({ data }: { data: CardData }) {
   const { copied, copy } = useCopy();
 
   const share = async () => {
+    // Share the public card URL, not whatever preview or local URL this page is on
+    const url = data.website ?? window.location.href;
     const shareData = {
       title: fullName(data),
       text: `${fullName(data)} · ${data.title}`,
-      url: window.location.href,
+      url,
     };
     if (navigator.share) {
       try {
@@ -22,7 +24,7 @@ export function ActionBar({ data }: { data: CardData }) {
         // User cancelled or share failed: fall back to copying the link
       }
     }
-    copy(window.location.href);
+    copy(url);
   };
 
   return (

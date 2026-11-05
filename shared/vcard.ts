@@ -1,6 +1,8 @@
 import { fullName, type CardData } from "./card";
 
-const escape = (value: string) => value.replace(/([,;\\])/g, "\\$1");
+// vCard 3.0 text escaping: backslash, comma and semicolon, and newlines as \n
+const escape = (value: string) =>
+  value.replace(/([,;\\])/g, "\\$1").replace(/\r?\n/g, "\\n");
 
 /** Builds a vCard 3.0 string, the format iOS and Android contacts both import. */
 export function buildVCard(c: CardData): string {

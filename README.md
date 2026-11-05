@@ -9,9 +9,10 @@ A digital business card for Bala Mahesh B.
 ## Website
 
 - **Save contact**: downloads a `.vcf` file that phones import straight into Contacts
-- **Scan to save**: the QR code holds the full vCard, so scanning adds the contact without any internet
+- **Scan to save**: the QR code holds the full vCard, so scanning adds the contact without any internet. Switch it to **Card page** to share the site link instead, and tap the code to show it full screen
 - **Share**: opens the phone's share sheet, or copies the link on desktop
 - Copy buttons on every contact row, light and dark mode, works at phone width
+- Link previews (Open Graph image) and an Add to Home Screen icon and manifest
 
 ## Run it
 
@@ -51,4 +52,4 @@ src/
 
 **GitHub Pages**: set `base: "/<repo-name>/"` in `vite.config.ts`, build, and publish `dist/`.
 
-Once it's live, you can also print a second QR code that points to the site URL, so people land on the full card instead of only saving the contact.
+The social preview image (`public/og-image.png`) and icons are static files. If you change your name, title or skills, regenerate them so link previews match.
